@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>OpenAI Q&A</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function ChatApp() {
+      const [question, setQuestion] = React.useState('');
+      const [answer, setAnswer] = React.useState('');
+      const [loading, setLoading] = React.useState(false);
+
+      const submitQuestion = async () => {
+        if (!question.trim()) return;
+        setLoading(true);
+        try {
+          const resp = await fetch('/api/ask', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ question })
+          });
+          const data = await resp.json();
+          if (data.answer) {
+            setAnswer(data.answer);
+          } else if (data.error) {
+            setAnswer('Error: ' + data.error);
+          }
+        } catch (err) {
+          setAnswer('Error: ' + err.message);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      return (
+        <div>
+          <h1>OpenAI Q&A</h1>
+          <textarea value={question} onChange={e => setQuestion(e.target.value)} rows="4" cols="50" />
+          <br />
+          <button onClick={submitQuestion} disabled={loading}>Ask</button>
+          <h2>Answer:</h2>
+          <pre>{answer}</pre>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<ChatApp />, document.getElementById('root'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+/* Notion-style minimal UI for Manaboo Chat App */
+body {
+  background: #f7f6f3;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: #37352f;
+  margin: 0;
+  padding: 0;
+}
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+.notion-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.08);
+  padding: 40px 32px 32px 32px;
+  margin-top: 60px;
+  width: 480px;
+  max-width: 90vw;
+}
+.notion-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+.notion-textarea {
+  width: 100%;
+  min-height: 80px;
+  border: none;
+  border-radius: 6px;
+  background: #f7f6f3;
+  font-size: 1rem;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  resize: vertical;
+  box-sizing: border-box;
+  color: #37352f;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+.notion-textarea:focus {
+  box-shadow: 0 0 0 2px #d3d1cb;
+}
+.notion-button {
+  background: #ecebe6;
+  color: #37352f;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 24px;
+}
+.notion-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.notion-button:not(:disabled):hover {
+  background: #e3e2dd;
+}
+.notion-answer-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  margin-top: 12px;
+}
+.notion-answer {
+  background: #f7f6f3;
+  border-radius: 6px;
+  padding: 16px;
+  font-size: 1rem;
+  white-space: pre-wrap;
+  min-height: 40px;
+  color: #37352f;
+}

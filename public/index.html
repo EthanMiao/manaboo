@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>OpenAI Q&A</title>
+  <title>Manaboo Chat App</title>
+  <link rel="stylesheet" href="notion.css" />
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -40,13 +41,23 @@
       };
 
       return (
-        <div>
-          <h1>OpenAI Q&A</h1>
-          <textarea value={question} onChange={e => setQuestion(e.target.value)} rows="4" cols="50" />
-          <br />
-          <button onClick={submitQuestion} disabled={loading}>Ask</button>
-          <h2>Answer:</h2>
-          <pre>{answer}</pre>
+        <div className="notion-container">
+          <div className="notion-title">Manaboo Chat</div>
+          <textarea
+            className="notion-textarea"
+            value={question}
+            onChange={e => setQuestion(e.target.value)}
+            rows="4"
+            placeholder="Type your question..."
+            disabled={loading}
+          />
+          <button
+            className="notion-button"
+            onClick={submitQuestion}
+            disabled={loading || !question.trim()}
+          >{loading ? 'Thinking...' : 'Ask'}</button>
+          <div className="notion-answer-label">Answer:</div>
+          <div className="notion-answer">{answer}</div>
         </div>
       );
     }
